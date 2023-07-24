@@ -10,7 +10,7 @@ class Rak extends Component
 {
     protected $paginationTheme ='bootstrap';
     use WithPagination;
-    public $create, $edit;
+    public $create, $edit, $delete;
     public $rak, $baris, $kategori, $kategori_id, $rak_id;
 
     public function create()
@@ -81,6 +81,23 @@ class Rak extends Component
 
         $this->format();
     }
+
+    public function delete(ModelsRak $rak)
+    {
+        $this->delete = true;
+        $this->rak_id = $rak->id;
+    }
+
+    public function destroy(ModelsRak $rak)
+    {
+        $rak->delete();
+
+        
+        session()->flash('sukses', 'Data berhasil dihapus.');
+
+        $this->format();
+    }
+    
     public function render()
     {
         return view('livewire.rak', [
@@ -92,6 +109,7 @@ class Rak extends Component
     {
         unset($this->create);
         unset($this->edit);
+        unset($this->delete);
         unset($this->rak_id);
         unset($this->rak);
         unset($this->baris);
