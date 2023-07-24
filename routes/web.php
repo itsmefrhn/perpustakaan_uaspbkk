@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Petugas\KategoriController;
+use App\Http\Controllers\Petugas\RakController;
+use App\Models\Rak;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +29,4 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/kategori', KategoriController::class);
+Route::get('/rak', RakController::class);

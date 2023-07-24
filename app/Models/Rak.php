@@ -9,4 +9,9 @@ class Rak extends Model
 {
     use HasFactory;
     protected $table = 'rak';
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
 }

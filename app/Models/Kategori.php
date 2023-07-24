@@ -10,4 +10,9 @@ class Kategori extends Model
     use HasFactory;
     protected $table = 'kategori';
     protected $fillable =['name' ,'slug'];
+
+    public function rak()
+    {
+        return $this->hasMany(Rak::class);
+    }
 }
