@@ -2,9 +2,9 @@
     <div class="col-12">
 
     @include('admin-lte/flash')
-    {{-- @include('petugas/kategori/create')
-    @include('petugas/kategori/edit')
-    @include('petugas/kategori/delete') --}}
+    @include('petugas/rak/create')
+    {{-- @include('petugas/rak/edit') --}}
+    {{-- @include('petugas/kategori/delete') --}}
 
 
 
