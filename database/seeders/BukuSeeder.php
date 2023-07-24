@@ -20,7 +20,7 @@ class BukuSeeder extends Seeder
             'sampul' => 'bintangcover.jpg',
             'penulis' => 'tere liye',
             'penerbit_id' => 1,
-            'kategori_id' => 3,
+            'kategori_id' => 4,
             'rak_id' => 1,
             'stok' => 5,
         ]);
@@ -31,7 +31,7 @@ class BukuSeeder extends Seeder
             'sampul' => 'bulancover.jpeg',
             'penulis' => 'tere liye',
             'penerbit_id' => 1,
-            'kategori_id' => 3,
+            'kategori_id' => 4,
             'rak_id' => 1,
             'stok' => 5,
         ]);
