@@ -12,7 +12,7 @@ class Kategori extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $create, $edit, $update, $nama, $kategori_id;
+    public $create, $edit, $nama, $delete, $kategori_id;
 
     protected $rules = [
         'nama' => 'required|min:5',
@@ -58,7 +58,23 @@ class Kategori extends Component
 
         $this->format();
     }
-    
+
+    public function delete($id)
+    {
+        $this->format();
+
+        $this->delete = true;
+        $this->kategori_id = $id;
+    }
+
+    public function destroy(ModelsKategori $kategori) 
+    {
+        $kategori->delete();
+
+        session()->flash('sukses', 'Data berhasil dihapus');
+
+        $this->format();
+    }
     public function render()
     {
         return view('livewire.kategori', [
@@ -71,6 +87,7 @@ class Kategori extends Component
         unset($this->nama);
         unset($this->create);
         unset($this->edit);
+        unset($this->delete);
         unset($this->kategori_id);
     }
 

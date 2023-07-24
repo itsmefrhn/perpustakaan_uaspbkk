@@ -1,35 +1,14 @@
 <div class="row">
     <div class="col-12">
 
-        @if(session('sukses'))
-        <div class="alert alert-success">
-            {{session('sukses')}}
-        </div>
-        @endif
+    @include('admin-lte/flash')
+    @include('petugas/kategori/create')
+    @include('petugas/kategori/edit')
+    @include('petugas/kategori/delete')
 
-    @if ($create)
-    <div class="card">
-        <div class="card-body">
-            <div class="form-group">
-                <label for="nama">Kategori</label>
-                <input wire:model="nama" type="text" class="form-control" id="nama" name="nama">
-                @error('nama') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-        <span wire:click ="store" class="btn btn-sm btn-success">Simpan</span>
-    </div>
-    @endif
 
-    @if ($edit)
-    <div class="card">
-        <div class="card-body">
-            <div class="form-group">
-                <label for="nama">Kategori</label>
-                <input wire:model="nama" type="text" class="form-control" id="nama" name="nama">
-                @error('nama') <small class="text-danger">{{ $message }}</small> @enderror
-        </div>
-        <span wire:click ="update({{$kategori_id}})" class="btn btn-sm btn-success">Update</span>
-    </div>
-    @endif
+
+ 
 
     <div class="card">
     <div class="card-header">
@@ -63,7 +42,7 @@
         <td>
             <div class="btn-group">
                 <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-primary mr-2">Edit</span>
-                <span class="btn btn-sm btn-danger">Hapus</span>
+                <span wire:click="delete({{$item->id}})"class="btn btn-sm btn-danger">Hapus</span>
             </div>
         </td>
     </tr>
