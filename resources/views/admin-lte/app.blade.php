@@ -45,6 +45,6 @@
 <!-- ./wrapper -->
 
 @include('admin-lte/javascript')
-@livewireStyles
+@livewireScripts
 </body>
 </html>
