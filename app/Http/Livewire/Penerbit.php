@@ -11,8 +11,8 @@ class Penerbit extends Component
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $create;
-    public $nama;
+    public $create, $edit;
+    public $nama, $penerbit_id;
 
     protected $rules = [
         'nama' => 'required',
@@ -34,16 +34,40 @@ class Penerbit extends Component
            session()->flash('sukses', 'Data berhasil ditambahkan.');
            $this->format();
     }
+
+    public function edit(ModelsPenerbit $penerbit)
+    {
+        $this->format();
+
+        $this->edit = true;
+        $this->nama = $penerbit->nama;
+        $this->penerbit_id = $penerbit->id;
+    }
+
+    public function update(ModelsPenerbit $penerbit)
+    {
+        $this->validate();
+
+        $penerbit->update([
+            'nama' => $this->nama,
+            'slug' => Str::slug($this->nama)
+        ]);
+
+        session()->flash('sukses', 'Data berhasil diedit.');
+        $this->format();
+    }
     public function render()
     {
         return view('livewire.penerbit', [
-            'penerbit' => ModelsPenerbit::latest()->paginate(1)
+            'penerbit' => ModelsPenerbit::latest()->paginate(6)
         ]);
     }
 
     public function format()
     {
             unset($this->create);
+            unset($this->edit);
             unset($this->nama);
+            unset($this->penerbit_id);
     }
 }
