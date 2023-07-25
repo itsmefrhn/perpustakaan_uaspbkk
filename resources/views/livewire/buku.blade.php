@@ -4,7 +4,7 @@
     @include('admin-lte/flash')
     @include('petugas/buku/create')
     @include('petugas/buku/edit')
-    {{-- @include('petugas/rak/delete') --}}
+    @include('petugas/buku/delete')
 
 
 
