@@ -3,6 +3,7 @@
 use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\RakController;
 use App\Http\Controllers\Petugas\PenerbitController;
+use App\Http\Controllers\Petugas\BukuController;
 use App\Models\Rak;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,4 @@ Route::get('/dashboard', function () {
 Route::get('/kategori', KategoriController::class);
 Route::get('/rak', RakController::class);
 Route::get('/penerbit', PenerbitController::class);
+Route::get('/buku', BukuController::class);
