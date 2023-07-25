@@ -13,6 +13,17 @@ class Rak extends Component
     public $create, $edit, $delete;
     public $rak, $baris, $kategori, $kategori_id, $rak_id;
 
+    protected $messages = [
+        'rak.required' => 'Rak harus diisi.',
+        'baris.required' => 'Baris harus diisi.',
+        'kategori_id.required' => 'Pilih salah satu Kategori!',
+    ];
+
+    protected $validationAttributes = [
+        'kategori_id' => 'kategori'
+    ];
+
+
     public function create()
     {
         $this->create = true;
