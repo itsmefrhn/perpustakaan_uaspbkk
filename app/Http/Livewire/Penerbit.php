@@ -11,7 +11,7 @@ class Penerbit extends Component
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $create, $edit;
+    public $create, $edit, $delete;
     public $nama, $penerbit_id;
 
     protected $rules = [
@@ -56,6 +56,22 @@ class Penerbit extends Component
         session()->flash('sukses', 'Data berhasil diedit.');
         $this->format();
     }
+
+    public function delete(ModelsPenerbit $penerbit)
+    {
+        $this->delete = true;
+        $this->penerbit_id = $penerbit->id;
+    }
+
+    public function destroy(ModelsPenerbit $penerbit)
+    {
+        $penerbit->delete();
+
+        session()->flash('sukses', 'Data berhasil dihapus.');
+        $this->format();
+    }
+
+    
     public function render()
     {
         return view('livewire.penerbit', [
@@ -67,6 +83,7 @@ class Penerbit extends Component
     {
             unset($this->create);
             unset($this->edit);
+            unset($this->delete);
             unset($this->nama);
             unset($this->penerbit_id);
     }

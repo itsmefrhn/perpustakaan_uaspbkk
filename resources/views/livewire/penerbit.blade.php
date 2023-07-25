@@ -4,7 +4,7 @@
     @include('admin-lte/flash')
     @include('petugas/penerbit/create')
     @include('petugas/penerbit/edit')
-    {{-- @include('petugas/rak/delete') --}}
+    @include('petugas/penerbit/delete')
 
 
 
