@@ -17,7 +17,7 @@ class BukuSeeder extends Seeder
         Buku::create([
             'judul' => 'bintang',
             'slug' => Str::slug('bintang'),
-            'sampul' => 'bintangcover.jpg',
+            'sampul' => 'buku/bintangcover.jpg',
             'penulis' => 'tere liye',
             'penerbit_id' => 1,
             'kategori_id' => 4,
@@ -28,7 +28,7 @@ class BukuSeeder extends Seeder
         Buku::create([
             'judul' => 'bulan',
             'slug' => Str::slug('bulan'),
-            'sampul' => 'bulancover.jpeg',
+            'sampul' => 'buku/bulancover.jpeg',
             'penulis' => 'tere liye',
             'penerbit_id' => 1,
             'kategori_id' => 4,
