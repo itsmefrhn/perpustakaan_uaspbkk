@@ -5,6 +5,7 @@
     @include('petugas/buku/create')
     @include('petugas/buku/edit')
     @include('petugas/buku/delete')
+    @include('petugas/buku/show')
 
 
 
@@ -47,6 +48,7 @@
         <td>{{$item->kategori->name}}</td>
         <td>
             <div class="btn-group">
+                <span wire:click="show({{$item->id}})" class="btn btn-sm btn-success mr-2">Lihat</span>
                 <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-primary mr-2">Edit</span>
                 <span wire:click="delete({{$item->id}})"class="btn btn-sm btn-danger">Hapus</span>
             </div>
