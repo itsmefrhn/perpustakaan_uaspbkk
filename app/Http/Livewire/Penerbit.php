@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Penerbit as ModelsPenerbit;
+use App\Models\Buku;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class Penerbit extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $create, $edit, $delete;
-    public $nama, $penerbit_id;
+    public $nama, $penerbit_id, $buku;
 
     protected $rules = [
         'nama' => 'required',
@@ -65,6 +66,12 @@ class Penerbit extends Component
 
     public function destroy(ModelsPenerbit $penerbit)
     {
+        $buku = Buku::where('penerbit_id', $penerbit->id)->get();
+        foreach ($buku as $key => $value) {
+            $value->update([
+                'penerbit_id' => 1
+            ]);
+        }
         $penerbit->delete();
 
         session()->flash('sukses', 'Data berhasil dihapus.');

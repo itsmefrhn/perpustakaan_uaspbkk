@@ -14,7 +14,7 @@ class PenerbitSeeder extends Seeder
      */
     public function run(): void
     {
-        $penerbit = ['gramedia', 'erlangga'];
+        $penerbit = ['none', 'gramedia', 'erlangga'];
 
         foreach ($penerbit as $key => $value) {
             Penerbit::create([

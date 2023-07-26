@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Kategori;
 use App\Models\Rak as ModelsRak;
+use App\Models\Buku;
 use Livewire\Component;
 use Livewire\WithPagination;
 class Rak extends Component
@@ -11,7 +12,7 @@ class Rak extends Component
     protected $paginationTheme ='bootstrap';
     use WithPagination;
     public $create, $edit, $delete;
-    public $rak, $baris, $kategori, $kategori_id, $rak_id;
+    public $rak, $baris, $kategori, $kategori_id, $rak_id, $buku;
 
     protected $messages = [
         'rak.required' => 'Rak harus diisi.',
@@ -101,6 +102,12 @@ class Rak extends Component
 
     public function destroy(ModelsRak $rak)
     {
+        $buku = Buku::where('rak_id', $rak->id)->get();
+        foreach ($buku as $key => $value) {
+            $value->update([
+                'rak_id' => 1
+            ]);
+        }
         $rak->delete();
 
         
