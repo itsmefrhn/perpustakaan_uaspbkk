@@ -36,7 +36,7 @@ class Buku extends Component
     {
 
         if ($this->pilih_kategori) {
-            $buku =ModelsBuku::latest()->where('kategori_id', $this->kategori_id)->paginate(1);
+            $buku =ModelsBuku::latest()->where('kategori_id', $this->kategori_id)->paginate(2);
             $title = Kategori::find($this->kategori_id)->name;
 
         } else {

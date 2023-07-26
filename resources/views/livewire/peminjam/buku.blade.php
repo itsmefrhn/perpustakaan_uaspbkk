@@ -16,8 +16,9 @@
                       <p class="card-text">{{ $item->penulis }}</p>
                     </div>
                   </div>
+                </div>
                 @endforeach
-            </div>
+
     @else
     <div class="alert alert-danger">
         Data tidak ada.
