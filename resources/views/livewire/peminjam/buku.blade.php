@@ -1,4 +1,5 @@
 <div class="container">
+    @include('admin-lte/flash')
     <div class="row">
         <div class="col-md-12 mb-4">
             <h1>{{ $title }}</h1>
@@ -47,11 +48,11 @@
                     <tr>
                     <th>Stok</th>
                     <td>:</td>
-                    <td>{{ $buku->rak->stok }}</td>
+                    <td>{{ $buku->stok }}</td>
                     </tr>
                 </tbody>
                 </table>
-                <button class="btn btn-success">Keranjang</button>
+                <button wire:click="keranjang({{$buku->id}})" class="btn btn-success">Keranjang</button>
         </div>
     </div>
 
