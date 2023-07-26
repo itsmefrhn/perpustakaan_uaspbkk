@@ -82,7 +82,7 @@ class Penerbit extends Component
     public function render()
     {
         return view('livewire.penerbit', [
-            'penerbit' => ModelsPenerbit::latest()->paginate(6)
+            'penerbit' => ModelsPenerbit::latest()->paginate(5)
         ]);
     }
 
