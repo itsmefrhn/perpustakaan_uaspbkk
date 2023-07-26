@@ -39,14 +39,17 @@ class Buku extends Component
         'penerbit_id' => 'penerbit',
 
     ];
+
+    public function pilihKategori()
+    {
+        $this->rak = Rak::where('kategori_id', $this->kategori_id)->get();
+    }
     public function create()
     {
         $this->format();
 
         $this->create = true;
         $this->kategori = Kategori::all();
-
-        $this->rak = Rak::all();
         $this->penerbit = Penerbit::all();
     }
 
