@@ -4,6 +4,7 @@ use App\Http\Controllers\Petugas\KategoriController;
 use App\Http\Controllers\Petugas\RakController;
 use App\Http\Controllers\Petugas\PenerbitController;
 use App\Http\Controllers\Petugas\BukuController;
+use App\Http\Controllers\Peminjam\BukuController as PeminjamBukuController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', PeminjamBukuController::class);
 
 Auth::routes();
 

@@ -15,6 +15,13 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+
+    
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    @livewireStyles
+
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +83,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>
