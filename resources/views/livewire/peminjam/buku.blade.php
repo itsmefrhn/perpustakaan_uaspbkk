@@ -1,21 +1,30 @@
 <div class="container">
     <div class="row">
-        <h1>Semua Buku</h1>
+        <div class="col-md-12 mb-4">
+            <h1>{{ $title }}</h1>
+        </div>
     </div>
 
+    @if ($buku->isNotEmpty())
     <div class="row">
         @foreach ($buku as $item)
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-3  col-md-4 col-sm-6">
                 <div class="card mb-4 shadow" style="cursor: pointer">
                     <img src="/storage/{{$item->sampul}}" class="card-img-top" alt="{{ $item->judul }}" width="100" height="300">
                     <div class="card-body">
                       <h5 class="card-title"><strong>{{ $item->judul }}</strong></h5>
                       <p class="card-text">{{ $item->penulis }}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                   </div>
+                @endforeach
             </div>
-        @endforeach
+    @else
+    <div class="alert alert-danger">
+        Data tidak ada.
+    </div>
+    @endif
+
+    
     </div>
     <div class="row justify-content-center">
         {{ $buku->links() }}
