@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Petugas;
 
 use App\Models\Penerbit as ModelsPenerbit;
 use App\Models\Buku;
@@ -81,7 +81,7 @@ class Penerbit extends Component
     
     public function render()
     {
-        return view('livewire.penerbit', [
+        return view('livewire.petugas.penerbit', [
             'penerbit' => ModelsPenerbit::latest()->paginate(5)
         ]);
     }

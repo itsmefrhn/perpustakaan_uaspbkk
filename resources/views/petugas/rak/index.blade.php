@@ -4,5 +4,5 @@
     
 
 @section('content')
-    <livewire:rak></livewire:rak>
+    <livewire:petugas.rak></livewire:petugas.rak>
 @endsection
