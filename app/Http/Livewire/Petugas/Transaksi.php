@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Petugas;
 
 use App\Models\Peminjaman;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -31,6 +32,32 @@ class Transaksi extends Component
         $this->format();
         $this->selesai_dipinjam;
     }
+
+    public function pinjam(Peminjaman $peminjaman)
+    {
+        $peminjaman->update([
+            'petugas_pinjam' => auth()->user()->id,
+            'status' => 2
+        ]);
+        session()->flash('sukses', 'Buku berhasil dipinjam.');
+    }
+
+    public function kembali(Peminjaman $peminjaman)
+    {
+        $data = [
+            'status' => 3,
+            'pteugas_pinjam' => auth()->user()->id,
+            'tanngal_pengembalian' => today(),
+            'denda' => 0
+        ];
+        if (Carbon::create($peminjaman->tanngal_kembali)->lessThan(today())) {
+            $denda = Carbon::create($peminjaman->tanngal_kembali)->diffInDays(today());
+            $denda = $denda * 1000;
+            $data['denda'] = $denda;
+        }
+        $peminjaman->update($data);
+        session()->flash('sukses', 'Buku berhasil dikembalikan.');
+    }
     public function render()
     {
         if ($this->belum_dipinjam) {
@@ -42,7 +69,7 @@ class Transaksi extends Component
         }else {
             $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(5);
         }
-        
+    
         return view('livewire.petugas.transaksi', [
             'transaksi' =>$transaksi
         ]);

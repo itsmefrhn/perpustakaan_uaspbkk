@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('denda')->nullable();
             $table->date('tanngal_pinjam')->nullable();
             $table->date('tanngal_kembali')->nullable();
+            $table->date('tanngal_pengembalian')->nullable();
             $table->timestamps();
         });
     }

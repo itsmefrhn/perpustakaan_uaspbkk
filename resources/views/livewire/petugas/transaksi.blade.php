@@ -2,9 +2,6 @@
     <div class="col-12">
 
     @include('admin-lte/flash')
-    {{-- @include('petugas/rak/create')
-    @include('petugas/rak/edit')
-    @include('petugas/rak/delete') --}}
 
         <div class="btn-group mb-3">
             <button wire:click="format"class="btn btn-sm bg-teal mr-2">Semua</button>
@@ -82,9 +79,9 @@
             @if (!$selesai_dipinjam)
             <td>
                 @if ($item->status == 1)
-                <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-success">Pinjam</span>
+                <span wire:click="pinjam({{$item->id}})" class="btn btn-sm btn-success">Pinjam</span>
                 @elseif ($item->status == 2)
-                <span wire:click="edit({{$item->id}})"class="btn btn-sm btn-primary">Kembali</span>
+                <span wire:click="kembali({{$item->id}})"class="btn btn-sm btn-primary">Kembali</span>
                 @endif
             </td>
             @else

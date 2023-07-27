@@ -12,7 +12,7 @@ class Rak extends Component
     protected $paginationTheme ='bootstrap';
     use WithPagination;
     public $create, $edit, $delete;
-    public $rak, $baris, $kategori, $kategori_id, $rak_id, $buku;
+    public $rak, $baris, $kategori, $kategori_id, $rak_id, $buku, $search;
 
     protected $messages = [
         'rak.required' => 'Rak harus diisi.',
@@ -118,9 +118,14 @@ class Rak extends Component
     
     public function render()
     {
-        return view('livewire.petugas.rak', [
-            'raks' => ModelsRak::latest()->paginate(5)
-        ]);
+        if ($this->search) {
+            $raks = ModelsRak::latest()->paginate(5);
+        } else {
+            $raks = ModelsRak::latest()->paginate(5);
+        }
+        $count = ModelsRak::select('rak')->distinct()->get();
+        
+        return view('livewire.petugas.rak', compact('raks', 'count'));
     }
 
     public function format()

@@ -13,7 +13,7 @@ class Penerbit extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $create, $edit, $delete;
-    public $nama, $penerbit_id, $buku;
+    public $nama, $penerbit_id, $buku, $search;
 
     protected $rules = [
         'nama' => 'required',
@@ -78,11 +78,21 @@ class Penerbit extends Component
         $this->format();
     }
 
-    
+
+    public function updatingSearch()
+    {
+        $this->resetPage('commentsPage');
+    }
     public function render()
     {
+        if ($this->search) {
+            $penerbit = ModelsPenerbit::latest()->where('nama', 'like', '%' .$this->search . '%')->paginate(5);
+        } else {
+            $penerbit = ModelsPenerbit::latest()->paginate(5);
+        }
+        
         return view('livewire.petugas.penerbit', [
-            'penerbit' => ModelsPenerbit::latest()->paginate(5)
+            'penerbit' => $penerbit
         ]);
     }
 

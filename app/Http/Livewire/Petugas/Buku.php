@@ -17,7 +17,7 @@ class Buku extends Component
     use WithPagination;
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
-    public $create, $edit, $delete, $show;
+    public $create, $edit, $delete, $show, $search;
     public $kategori, $rak, $penerbit;
     public $kategori_id, $rak_id, $penerbit_id, $baris;
     public $judul, $stok, $penulis, $sampul, $buku_id;
@@ -168,10 +168,21 @@ class Buku extends Component
         $this->rak = $buku->rak->rak;
         $this->baris = $buku->rak->baris;
     }
+
+    public function updatingSearch()
+    {
+        $this->resetPage('commentsPage');
+    }
     public function render()
     {
+        if ($this->search) {
+            $buku = ModelsBuku::latest()->where('judul', 'like', '%'. $this->search.'%')->paginate(5);
+        } else {
+            $buku = ModelsBuku::latest()->paginate(5);
+        }
+        
         return view('livewire.petugas.buku', [
-            'buku' =>ModelsBuku::latest()->paginate(5)
+            'buku' => $buku
         ]);
     }
 
