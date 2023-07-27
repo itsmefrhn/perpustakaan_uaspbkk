@@ -5,6 +5,9 @@
         </div>
     </div>
 
+    @include('admin-lte/flash')
+
+
 <div class="row">
     <div class="col-md-12 mb-4">
         <label for="tanngal_pinjam">Tanggal Pinjam</label>
@@ -14,9 +17,17 @@
 
 
     <div class="row">
+        <div class="col-md-12 mb-2">
+            <button wire:click="hapusMasal" class="btn btn-sm btn-danger">Hapus Semua</button>
+            <strong class="float-right">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-md-12">
             <table class="table table-hover text-nowrap">
-                <strong>Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
+                
                 <thead>
                 <tr>
                 <th>No</th>
@@ -35,7 +46,7 @@
                         <td>{{ $item->buku->penulis }}</td>
                         <td>{{ $item->buku->rak->rak }}</td>
                         <td>{{ $item->buku->rak->baris }}</td>
-                        <td><button class="btn btn-sm btn-danger">Hapus</button></td>
+                        <td><button wire:click="hapus({{ $keranjang->id }}, {{ $item->id }})"class="btn btn-sm btn-danger">Hapus</button></td>
                     </tr>
                     @endforeach
                 </tbody>
