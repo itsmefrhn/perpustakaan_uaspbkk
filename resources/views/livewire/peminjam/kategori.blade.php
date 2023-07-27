@@ -42,7 +42,7 @@
                     @else
                         @if ($count > 0)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Keranjang <span class="badge text-bg-primary">{{ $count }}</span></a>
+                            <a class="nav-link" href="/keranjang">Keranjang <span class="badge text-bg-primary">{{ $count }}</span></a>
                         </li>
                         @endif
                     <li class="nav-item dropdown">
