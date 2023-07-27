@@ -37,6 +37,7 @@
         <th>Buku</th>
         <th>Lokasi</th>
         <th>Tanggal Pinjam</th>
+        <th>Tanggal Kembali</th>
         <th>Status</th>
         <th width="15%">Aksi</th>
         </tr>
@@ -61,6 +62,7 @@
                 </ul>
             </td>
             <td>{{\Carbon\Carbon::create($item->tanngal_pinjam)->format('d-m-Y')}}</td>
+            <td>{{\Carbon\Carbon::create($item->tanngal_kembali)->format('d-m-Y')}}</td>
             <td>
                 @if ($item->status==1)
                 <span class="badge bg-indigo">Belum Dipinjam</span>
@@ -74,7 +76,7 @@
                 @if ($item->status == 1)
                 <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-success">Pinjam</span>
                 @elseif ($item->status == 2)
-                <span wire:click="edit({{$item->id}})"class="btn btn-sm btn-danger">Kembali</span>
+                <span wire:click="edit({{$item->id}})"class="btn btn-sm btn-primary">Kembali</span>
                 @endif
             </td>
         </tr>
