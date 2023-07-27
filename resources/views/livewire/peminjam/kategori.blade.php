@@ -40,6 +40,11 @@
                         </li>
                     @endif
                     @else
+                        @if ($count > 0)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Keranjang <span class="badge text-bg-primary">{{ $count }}</span></a>
+                        </li>
+                        @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}

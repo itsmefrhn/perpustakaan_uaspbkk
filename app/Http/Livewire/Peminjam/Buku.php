@@ -66,9 +66,10 @@ class Buku extends Component
                     ]);
 
                     DetailPeminjaman::create([
-                        'peminjaman_id' => $peminjaman_baru->peminjaman_id,
+                        'peminjaman_id' => $peminjaman_baru->id,
                         'buku_id' => $buku->id
                     ]);
+                    $this->emit('tambahKeranjang');
                     session()->flash('sukses', 'Buku berhasil ditambahkan.');
                 } else {
                     // dd($peminjaman_lama[0]);
@@ -77,9 +78,10 @@ class Buku extends Component
                     } else {
 
                         DetailPeminjaman::create([
-                            'peminjaman_id' => $peminjaman_lama[0]->id,
+                            'peminjaman_id' => $peminjaman_lama[0]->peminjaman_id,
                             'buku_id' => $buku->id
                         ]);
+                        $this->emit('tambahKeranjang');
 
                         session()->flash('sukses', 'Buku berhasil ditambahkan.');
 
