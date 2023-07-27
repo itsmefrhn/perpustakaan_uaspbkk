@@ -16,7 +16,7 @@ class Buku extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['pilihKategori', 'semuaKategori'];
 
-    public $kategori_id, $pilih_kategori, $buku_id, $detail_buku;
+    public $kategori_id, $pilih_kategori, $buku_id, $detail_buku, $search;
 
     public function pilihKategori($id)
     {
@@ -111,14 +111,22 @@ class Buku extends Component
     {
 
         if ($this->pilih_kategori) {
-            $buku =ModelsBuku::latest()->where('kategori_id', $this->kategori_id)->paginate(2);
+            if ($this->search) {
+                $buku =ModelsBuku::latest()->where('judul', 'like', '%'. $this->search .'%')->where('kategori_id', $this->kategori_id)->paginate(12);
+            } else {
+                $buku =ModelsBuku::latest()->where('kategori_id', $this->kategori_id)->paginate(12);
+            }
             $title = Kategori::find($this->kategori_id)->name;
 
         }elseif ($this->detail_buku) {
             $buku = ModelsBuku::find($this->buku_id);
             $title = 'Detail Buku';
         }else {
-            $buku =ModelsBuku::latest()->paginate(12);
+            if ($this->search) {
+                $buku =ModelsBuku::latest()->where('judul', 'like', '%'. $this->search .'%')->paginate(12);
+            } else {
+                $buku =ModelsBuku::latest()->paginate(12);
+            }
             $title = 'Semua Buku';
         }
         
