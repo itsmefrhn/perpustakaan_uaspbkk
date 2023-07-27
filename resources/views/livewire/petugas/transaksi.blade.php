@@ -6,9 +6,12 @@
     @include('petugas/rak/edit')
     @include('petugas/rak/delete') --}}
 
-
-
- 
+        <div class="btn-group mb-3">
+            <button wire:click="format"class="btn btn-sm bg-teal mr-2">Semua</button>
+            <button wire:click="belumDipinjam"class="btn btn-sm bg-indigo mr-2">Belum Dipinjam</button>
+            <button wire:click="sedangDipinjam"class="btn btn-sm bg-olive mr-2">Sedang Dipinjam</button>
+            <button wire:click="selesaiDipinjam"class="btn btn-sm bg-fuchsia mr-2">Selesai Dipinjam</button>
+        </div>
 
     <div class="card">
     <div class="card-header">
@@ -38,8 +41,11 @@
         <th>Lokasi</th>
         <th>Tanggal Pinjam</th>
         <th>Tanggal Kembali</th>
+        <th>Denda</th>
         <th>Status</th>
-        <th width="15%">Aksi</th>
+        @if(!$selesai_dipinjam)
+            <th width="15%">Aksi</th>
+        @endif
         </tr>
         </thead>
         <tbody>
@@ -63,6 +69,7 @@
             </td>
             <td>{{\Carbon\Carbon::create($item->tanngal_pinjam)->format('d-m-Y')}}</td>
             <td>{{\Carbon\Carbon::create($item->tanngal_kembali)->format('d-m-Y')}}</td>
+            <td>Rp. {{$item->denda}}</td>
             <td>
                 @if ($item->status==1)
                 <span class="badge bg-indigo">Belum Dipinjam</span>
@@ -72,6 +79,7 @@
                 <span class="badge bg-fuchsia">Selesai Dipinjam</span>
                 @endif
             </td>
+            @if (!$selesai_dipinjam)
             <td>
                 @if ($item->status == 1)
                 <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-success">Pinjam</span>
@@ -79,6 +87,9 @@
                 <span wire:click="edit({{$item->id}})"class="btn btn-sm btn-primary">Kembali</span>
                 @endif
             </td>
+            @else
+                
+            @endif
         </tr>
         @endforeach
         </tbody>
