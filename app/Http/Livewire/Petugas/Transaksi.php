@@ -13,7 +13,7 @@ class Transaksi extends Component
     use WithPagination;
  
     protected $paginationTheme = 'bootstrap';
-    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam;
+    public $belum_dipinjam, $sedang_dipinjam, $selesai_dipinjam, $search;
 
     public function belumDipinjam()
     {
@@ -35,7 +35,13 @@ class Transaksi extends Component
 
     public function pinjam(Peminjaman $peminjaman)
     {
+        foreach ($peminjaman->detail_peminjaman  as $detail_peminjaman) {
+            $detail_peminjaman->buku->update([
+                'stok' => $detail_peminjaman->buku->stok -1
+            ]);
+        }
         $peminjaman->update([
+
             'petugas_pinjam' => auth()->user()->id,
             'status' => 2
         ]);
@@ -50,6 +56,12 @@ class Transaksi extends Component
             'tanngal_pengembalian' => today(),
             'denda' => 0
         ];
+
+        foreach ($peminjaman->detail_peminjaman  as $detail_peminjaman) {
+            $detail_peminjaman->buku->update([
+                'stok' => $detail_peminjaman->buku->stok + 1
+            ]);
+        }
         if (Carbon::create($peminjaman->tanngal_kembali)->lessThan(today())) {
             $denda = Carbon::create($peminjaman->tanngal_kembali)->diffInDays(today());
             $denda = $denda * 1000;
@@ -58,18 +70,35 @@ class Transaksi extends Component
         $peminjaman->update($data);
         session()->flash('sukses', 'Buku berhasil dikembalikan.');
     }
+
+    public function updatingSearch()
+    {
+        $this->resetPage('commentsPage');
+    }
     public function render()
     {
-        if ($this->belum_dipinjam) {
-            $transaksi = Peminjaman::latest()->where('status', 1)->paginate(5);
-        } elseif ($this->sedang_dipinjam) {
-            $transaksi = Peminjaman::latest()->where('status', 2)->paginate(5);
-        } elseif ($this->selesai_dipinjam) {
-            $transaksi = Peminjaman::latest()->where('status', 3)->paginate(5);
-        }else {
-            $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(5);
+
+        if ($this->search) {
+            if ($this->belum_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%'.$this->search . '%')->where('status', 1)->paginate(5);
+            } elseif ($this->sedang_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%'.$this->search . '%')->where('status', 2)->paginate(5);
+            } elseif ($this->selesai_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%'.$this->search . '%')->where('status', 3)->paginate(5);
+            }else {
+                $transaksi = Peminjaman::latest()->where('kode_pinjam', 'like', '%'.$this->search . '%')->where('status', '!=', 0)->paginate(5);
+            }
+        } else {
+            if ($this->belum_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('status', 1)->paginate(5);
+            } elseif ($this->sedang_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('status', 2)->paginate(5);
+            } elseif ($this->selesai_dipinjam) {
+                $transaksi = Peminjaman::latest()->where('status', 3)->paginate(5);
+            }else {
+                $transaksi = Peminjaman::latest()->where('status', '!=', 0)->paginate(5);
+            }
         }
-    
         return view('livewire.petugas.transaksi', [
             'transaksi' =>$transaksi
         ]);
