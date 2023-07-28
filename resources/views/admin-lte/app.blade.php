@@ -46,5 +46,6 @@
 
 @include('admin-lte/javascript')
 @livewireScripts
+@yield('chart-script')
 </body>
 </html>

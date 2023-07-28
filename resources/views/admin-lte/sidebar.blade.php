@@ -74,6 +74,15 @@
                 </a>
               </li>
 
+              {{-- <li class="nav-item">
+                <a href="/chart" class="nav-link @yield('active-chart')">
+                  <i class="fas fa-chart-bar"></i>
+                  <p>
+                    Chart
+                  </p>
+                </a>
+              </li> --}}
+
               @role('admin')
               <li class="nav-header">ADMIN</li>
               <li class="nav-item">
