@@ -64,15 +64,27 @@
                   <p>Buku</p>
                 </a>
               </li>
+              </ul>
               <li class="nav-item">
                 <a href="/transaksi" class="nav-link @yield('active-transaksi')">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-hands"></i>
                   <p>
                     Transaksi
                   </p>
                 </a>
               </li>
-        </ul>
+
+              @role('admin')
+              <li class="nav-header">ADMIN</li>
+              <li class="nav-item">
+                <a href="/user" class="nav-link @yield('active-user')">
+                  <i class="fas fa-users"></i>
+                  <p>
+                    User
+                  </p>
+                </a>
+              </li>
+              @endrole
       </nav>
       <!-- /.sidebar-menu -->
     </div>

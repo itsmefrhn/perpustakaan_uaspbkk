@@ -30,7 +30,7 @@ class Transaksi extends Component
     public function selesaiDipinjam()
     {
         $this->format();
-        $this->selesai_dipinjam;
+        $this->selesai_dipinjam=true;
     }
 
     public function pinjam(Peminjaman $peminjaman)
