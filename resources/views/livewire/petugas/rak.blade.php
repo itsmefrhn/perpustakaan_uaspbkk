@@ -15,17 +15,17 @@
         <div class="card-tools">
         <div class="input-group input-group-sm" style="width: 150px;">
 
-            <select wire:model="search" multiple class="form-control float-right" id="exampleFormControlSelect1">
+            {{-- <select wire:model="search" multiple class="form-control float-right" id="exampleFormControlSelect1">
                 @foreach ($count as $item)
                     <option value="{{ $item->rak }}">{{ $item->rak }}</option>
                 @endforeach
-            </select>
+            </select> --}}
 
-        <div class="input-group-append">
+        {{-- <div class="input-group-append">
         <button type="submit" class="btn btn-default">
         <i class="fas fa-search"></i>
         </button>
-        </div>
+        </div> --}}
         </div>
         </div>
         </div>

@@ -11,9 +11,6 @@
                  <div class="input-group mb-2">
                         <input wire:model="search" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Cari Buku">
                         <div class="input-group-prepend">
-                            <button class="input-group-text">
-                                <i class="fas fa-search"></i>
-                            </button>
                         </div>
                  </div>
             </div>

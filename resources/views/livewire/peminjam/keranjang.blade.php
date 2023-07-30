@@ -25,7 +25,7 @@
             @else
                 <button wire:click ="pinjam({{ $keranjang->id }})"class="btn btn-sm btn-success">Pinjam</button>
             @endif
-            <strong class="float-right">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
+            <strong class="float-end">Kode Pinjam : {{ $keranjang->kode_pinjam }}</strong>
 
 
         </div>
