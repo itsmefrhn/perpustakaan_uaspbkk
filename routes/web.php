@@ -43,7 +43,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penerbit', PenerbitController::class);
         Route::get('/buku', BukuController::class);
         Route::get('/transaksi', TransaksiController::class);
-        Route::get('/chart', ChartController::class);
     });
 
 

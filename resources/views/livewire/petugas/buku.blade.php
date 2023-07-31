@@ -7,10 +7,6 @@
     @include('petugas/buku/delete')
     @include('petugas/buku/show')
 
-
-
- 
-
     <div class="card">
     <div class="card-header">
     <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
